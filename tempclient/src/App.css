@@ -54,6 +54,11 @@ button:active {
   border: none;
 }
 
+body.focus button:hover{
+  color: white;
+  background-color: #BA4949;
+}
+
 body.focus{
   background-color: #BA4949;
 }
