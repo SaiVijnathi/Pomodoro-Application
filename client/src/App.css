@@ -175,3 +175,25 @@ body {
     margin-top: 15px;
 }
 
+.pomo-grid{
+  display: grid;
+  grid-template-columns: 200px 500px 200px;
+  align-items: start;
+  justify-self: center;
+}
+
+.sessions{
+  border-radius: 5px;
+  background: #ffffff26;
+  box-shadow: 0 8px 25px #00000026;
+  width: 100px;
+  text-align: center;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.sessions-div{
+  max-height: 400px;
+  overflow-y: auto;
+  padding-left: 20px;
+}

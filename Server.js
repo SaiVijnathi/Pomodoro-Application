@@ -16,6 +16,23 @@ const userSchema = new mongoose.Schema({
 
 const User = mongoose.model("User", userSchema, "PomodoroUsers");
 
+const sessionSchema = new mongoose.Schema({
+    minutes : {
+        type : Number,
+        required : true
+    },
+    seconds : {
+        type : Number,
+        required :true
+    },
+    userId : {
+        type : String,
+        required : true
+    }
+})
+
+const Session = mongoose.model("session", sessionSchema, "SessionsData");
+
 app.post("/signup", async (req, res) => {
     try {
         console.log(req.body);
@@ -49,6 +66,7 @@ app.post("/login", async (req, res) => {
                 res.json({
                     status: "success",
                     msg: "login successful",
+                    token:token,
                     data: userArr,
                 });
             } else {
@@ -64,6 +82,36 @@ app.post("/login", async (req, res) => {
         res.json({ status: "error" });
     }
 });
+
+app.post('/postSessionData', async (req,res) => {
+    console.log(req.body);
+    const count = req.body.count;
+    const userId = req.body.userId
+    try{
+        const minutes = Math.floor(count/60);
+        const seconds = count%60;
+        const time = {
+            minutes, seconds, userId
+        }
+        console.log("time",minutes,seconds,userId)
+        await Session.insertMany(time);
+        res.json({status:"Success", msg:"saved mins and secs to DB"});
+    }
+      catch(err){
+        res.json({status:"Failure"});
+      }
+})
+
+app.post('/getSessionData', async (req,res) => {
+    console.log(req.body)
+    try{
+        const sessionData = await Session.find({userId:req.body.userId});
+        console.log(sessionData)
+        res.json({status:"Success", msg:"session data retrieved successfully", data: sessionData});
+    }catch(err){
+        res.json({status:"Failure", msg:"session data is not retrieved"});
+    }
+})
 
 const connectToMDB = async () => {
     try {

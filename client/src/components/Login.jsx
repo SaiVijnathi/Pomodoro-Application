@@ -30,6 +30,7 @@ export const Login = () => {
         const token = JSOData.token;
         localStorage.setItem("token", token);
         console.log(JSOData.data);
+        localStorage.setItem("userID",JSOData.data[0]._id)
       }
     } catch (err) {
       console.log("Data not sent", err);
