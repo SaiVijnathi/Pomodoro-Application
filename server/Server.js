@@ -5,7 +5,13 @@ const jwt = require("jsonwebtoken");
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+  origin: ["https://pomodoro-application.onrender.com"],
+//   origin : 'http://localhost:5173',
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
+
 app.use(express.json());
 
 const userSchema = new mongoose.Schema({

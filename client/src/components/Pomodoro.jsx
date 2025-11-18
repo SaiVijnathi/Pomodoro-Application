@@ -51,6 +51,8 @@ export const Pomodoro = () => {
         setIsRunning(false);
         setMode("focus")
     }
+
+      const apiBase = import.meta.env.VITE_API_URL;
     
     const sendSessionData = async () => {
       const count = countRef.current;
@@ -63,7 +65,7 @@ export const Pomodoro = () => {
           "Content-Type" : "application/json"
         }
       }
-      const JSONData = await fetch("http://localhost:4567/postSessionData", reqOptions)
+      const JSONData = await fetch(`${apiBase}/postSessionData`, reqOptions)
       const JSOData = await JSONData.json();
       console.log(JSOData.status)
     }

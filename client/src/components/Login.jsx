@@ -7,6 +7,8 @@ export const Login = () => {
 
   const navigate = useNavigate();
 
+    const apiBase = import.meta.env.VITE_API_URL;
+
 
   const loginData = async () => {
     const dataToSend = {
@@ -21,7 +23,7 @@ export const Login = () => {
       },
     };
     try {
-      const JSONData = await fetch("http://localhost:4567/login", reqOptions);
+      const JSONData = await fetch(`${apiBase}/login`, reqOptions);
       const JSOData = await JSONData.json();
       console.log("Data received", JSOData.status);
       alert(JSOData.msg);

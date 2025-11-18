@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react'
 export const Sessions = ({pause}) => {
   const [sessions, setSessions] = useState([]);
 
+    const apiBase = import.meta.env.VITE_API_URL;
+
   const sessionsData = async () => {
     const userId = localStorage.getItem("userID");
     console.log(userId)
@@ -13,7 +15,7 @@ export const Sessions = ({pause}) => {
         "Content-Type" : "application/json"
       }
     }
-    const JSONData = await fetch("http://localhost:4567/getSessionData", reqOptions);
+    const JSONData = await fetch(`${apiBase}/getSessionData`, reqOptions);
     const JSOData = await JSONData.json();
     console.log(JSOData.data)
     setSessions([...JSOData.data])

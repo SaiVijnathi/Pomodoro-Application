@@ -9,6 +9,8 @@ export const Signup = () => {
 
   const navigate = useNavigate();
 
+    const apiBase = import.meta.env.VITE_API_URL;
+
   const signupData = async () => {
     const dataToSend = {
       name,
@@ -23,7 +25,7 @@ export const Signup = () => {
       },
     };
     try {
-      const JSONData = await fetch("http://localhost:4567/signup", reqOptions);
+      const JSONData = await fetch(`${apiBase}/signup`, reqOptions);
       const JSOData = await JSONData.json();
       console.log(JSOData.status);
       console.log("name", name);
