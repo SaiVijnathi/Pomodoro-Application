@@ -2,11 +2,12 @@ const mongoose = require("mongoose");
 const express = require("express");
 const cors = require("cors");
 const jwt = require("jsonwebtoken");
+const cors = require("cors")
 
 const app = express();
 
 app.use(cors({
-  origin: ["https://pomodoro-application.onrender.com"],
+  origin: ["https://pomodoro-application-zeta.vercel.app"],
 //   origin : 'http://localhost:5173',
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
