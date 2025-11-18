@@ -39,8 +39,6 @@ const sessionSchema = new mongoose.Schema({
 
 const Session = mongoose.model("session", sessionSchema, "SessionsData");
 
-app.options("*", cors());
-
 app.post("/signup", async (req, res) => {
     try {
         console.log(req.body);
