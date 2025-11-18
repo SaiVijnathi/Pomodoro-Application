@@ -2,7 +2,6 @@ const mongoose = require("mongoose");
 const express = require("express");
 const cors = require("cors");
 const jwt = require("jsonwebtoken");
-const cors = require("cors")
 
 const app = express();
 
@@ -39,6 +38,8 @@ const sessionSchema = new mongoose.Schema({
 })
 
 const Session = mongoose.model("session", sessionSchema, "SessionsData");
+
+app.options("*", cors());
 
 app.post("/signup", async (req, res) => {
     try {
